@@ -16,6 +16,7 @@ class PostImageComment extends Controller
         $images = Images::all();
         $comments = Comments::all();
         return view('ViewPost', compact(['posts', 'images', 'comments']));
+
     }
 
     public function post_save()

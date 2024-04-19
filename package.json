@@ -4,11 +4,15 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "live-server": "live-server --port=1111 --no-browser --quiet --watch=*/**/*.php"
+        "live-server": "live-server --port=1111 --host=0.0.0.0 --no-browser --watch=*/**/*.php"
     },
     "devDependencies": {
         "axios": "^1.6.4",
+        "laravel-echo": "^1.16.1",
         "laravel-vite-plugin": "^1.0",
+        "pusher-js": "^8.4.0-rc2",
+        "typescript": "^5.4.5",
         "vite": "^5.0"
     }
 }
+

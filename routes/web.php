@@ -6,3 +6,4 @@ Route::get('/', function () {
     \App\Events\Debugger::dispatch('new Event');
     return view('welcome');
 });
+

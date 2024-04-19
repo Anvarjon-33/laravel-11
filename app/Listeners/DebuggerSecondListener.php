@@ -6,7 +6,7 @@ use App\Events\Debugger;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class DebuggerListener implements ShouldQueue
+class DebuggerSecondListener implements ShouldQueue
 {
     use InteractsWithQueue;
     /**
@@ -22,6 +22,6 @@ class DebuggerListener implements ShouldQueue
      */
     public function handle(Debugger $event): void
     {
-        echo PHP_EOL.$event->message.PHP_EOL;
+        echo PHP_EOL.$event->message.'DEBUGGER SECOND' . PHP_EOL;
     }
 }

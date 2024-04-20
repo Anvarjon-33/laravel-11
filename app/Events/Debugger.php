@@ -28,12 +28,11 @@ class Debugger implements ShouldBroadcast
      */
     public function broadcastOn(): Channel
     {
-        return new Channel('pub_channel');
+        return new Channel('channel_pub');
     }
 
     public function broadcastAs(): string
     {
-        return 'pub_event';
+        return 'event_pub';
     }
-
 }

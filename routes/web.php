@@ -1,9 +1,12 @@
 <?php
 
+use App\Events\Debugger;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    \App\Events\Debugger::dispatch('new Event');
+    Debugger::dispatch('Debugger_message');
+    event(new Debugger('new debugger'));
     return view('welcome');
 });
+
 

@@ -20,8 +20,7 @@ class DebuggerListener implements ShouldQueue
     /**
      * Handle the event.
      */
-    public function handle(Debugger $event): void
+    public function handle(): void
     {
-        echo PHP_EOL.$event->message.PHP_EOL;
     }
 }

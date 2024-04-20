@@ -20,8 +20,7 @@ class DebuggerSecondListener implements ShouldQueue
     /**
      * Handle the event.
      */
-    public function handle(Debugger $event): void
+    public function handle(): void
     {
-        echo PHP_EOL.$event->message.'DEBUGGER SECOND' . PHP_EOL;
     }
 }

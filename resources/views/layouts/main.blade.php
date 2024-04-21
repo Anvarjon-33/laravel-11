@@ -11,8 +11,9 @@
     <title>Document</title>
     @vite('resources/js/app.js')
 </head>
-<body>
+<body class="bg-amber-600">
+<a class="btn btn-success">CLICK</a>
     @yield('html-content')
 </body>
-@livewire('empty-component')
+    @livewire('empty-component')
 </html>

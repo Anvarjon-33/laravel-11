@@ -6,6 +6,7 @@ declare global {
         Echo: any;
         axios: any;
         Alpine: any;
+        Livewire:any
     }
 }
 

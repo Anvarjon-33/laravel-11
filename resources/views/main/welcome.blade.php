@@ -1,4 +1,4 @@
 @extends('layouts.main')
 @section('html-content')
-    HTML CONTENT
+    @livewire('send-message-broadcasting')
 @endsection

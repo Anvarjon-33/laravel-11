@@ -10,10 +10,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite('resources/js/app.js')
+    {{--    @vite('resources/js/echo.ts')--}}
 </head>
-<body class="bg-amber-600">
-<a class="btn btn-success">CLICK</a>
+<body class="bg-amber-100 min-h-[100vh]">
+<div class="bg-amber-50 mx-auto w-[80%] min-h-[100vh] p-2">
+
+    <h1 class="text-5xl text-red-300 p-3 m-4 h-[50px] relative" x-data="receiver">
+        <span class="h-[100%]" x-transition.fade.duration.500 x-bind="trigger"></span>
+    </h1>
     @yield('html-content')
+</div>
 </body>
-    @livewire('empty-component')
+@livewire('empty-component')
 </html>

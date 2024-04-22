@@ -1,10 +1,13 @@
-window?.Echo.channel('channel_pub').listen('Debugger', (event) => {
-    console.log(event)
-})
+import * as events from './Alpine.events'
+import {message} from "./Alpine.events";
 
-window.addEventListener('DOMContentLoaded',() => {
-    window?.Echo?.channel('channel_pub').listen('.event_pub', (event) => {
-        console.log(event)
+addEventListener('alpine:init', () => {
+    events.message()
+    window.Alpine.data('message', () => ({}))
+    window.addEventListener('DOMContentLoaded', () => {
+        window?.Echo?.channel('channel_pub').listen('.event_pub', (ev) => {
+            dispatchEvent(new CustomEvent('message:receive', {detail: ev.message}))
+        })
     })
 })
 

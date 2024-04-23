@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    \App\Events\ForPrivate::dispatch('Example_text', 'message');
+    broadcast(new \App\Events\ForPrivate('Notification', 'example'));
     return view('main.welcome');
 });
 

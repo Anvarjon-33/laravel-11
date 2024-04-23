@@ -11,6 +11,7 @@ window.Echo = new Echo({
     wssPort: import.meta.env.VITE_REVERB_PORT ?? 443,
     forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? 'https') === 'https',
     enabledTransports: ['ws', 'wss'],
+
     /*
     broadcaster: 'pusher',
     key: import.meta.env.VITE_PUSHER_APP_KEY,

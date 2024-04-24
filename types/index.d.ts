@@ -5,7 +5,8 @@ declare global {
         Echo: any;
         axios: any;
         Alpine: any;
-        Livewire:any
+        Livewire: any;
+        laravel: any
     }
 }
 

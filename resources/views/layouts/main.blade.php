@@ -6,10 +6,15 @@
             name="viewport"
             content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     >
-{{--    <meta name="csrf-token" content="{{csrf_token()}}">--}}
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite('resources/js/app.js')
+
+    <script>
+        window.laravel = {!! json_encode([ 'user' => auth()->check() ? auth()->user()->id : null ]) !!};
+    </script>
+
 </head>
 <body class="bg-amber-100 min-h-[100vh]">
 <div class="bg-amber-50 mx-auto w-[80%] min-h-[100vh] p-2">
@@ -18,6 +23,7 @@
         <span class="h-[100%]" x-transition.fade.duration.500 x-bind="trigger"></span>
     </h1>
     @yield('html-content')
+    @yield('users')
 </div>
 </body>
 @livewire('empty-component')

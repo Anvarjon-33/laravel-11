@@ -35,3 +35,6 @@ addEventListener('alpine:init', () => {
 
     })
 })
+
+// let token = await window.axios.post('/get_token');
+// console.log(token)

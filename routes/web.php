@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,11 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('/users', \App\Http\Controllers\UserPostController::class);
 Route::post('/users/store', [\App\Http\Controllers\UserPostController::class, 'store']);
+
+Route::get('get_token', function (Request $request) {
+//    return [
+//        'token' => $request->user()->createToken('simple_token')->plainTextToken
+//    ];
+})->middleware('auth:sanctum');
 
 require __DIR__.'/auth.php';

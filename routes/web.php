@@ -5,7 +5,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-//    \App\Events\ForPrivate::dispatch('Example_text', 'message');
+    echo 'Hello world from vs codee';
+   \App\Events\ForPrivate::dispatch('Private_events', 'message');
 //    broadcast(new \App\Events\ForPrivate('Notification', 'example'));
     return view('main.welcome');
 });

@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     \App\Events\ForPrivate::dispatch('Example_text', 'message');
     broadcast(new \App\Events\ForPrivate('Notification', 'example'));
-    return view('main.welcome');
+    $ip = $request->ip();
+    return view('main.welcome', compact('ip'));
 });
 
 Route::get('/dashboard', function () {

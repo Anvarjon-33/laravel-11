@@ -10,7 +10,8 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Debugger implements ShouldBroadcast
+class
+Debugger implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -28,11 +29,11 @@ class Debugger implements ShouldBroadcast
      */
     public function broadcastOn(): Channel
     {
-        return new Channel('channel_pub');
+        return new Channel('pub_ch');
     }
 
     public function broadcastAs(): string
     {
-        return 'event_pub';
+        return 'pub_e';
     }
 }

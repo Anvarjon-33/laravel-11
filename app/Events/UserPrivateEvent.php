@@ -8,18 +8,21 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 
-class ForPrivate implements ShouldBroadcast
+class UserPrivateEvent implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels, Notifiable;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public string $message, public string $channel)
+    private int $id;
+
+    public function __construct(public string $message)
     {
+        $this->id = Auth::id() ?? 0;
     }
 
     /**
@@ -28,21 +31,14 @@ class ForPrivate implements ShouldBroadcast
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
     public function broadcastOn(): array
-
     {
         return [
-            new PrivateChannel($this->channel)
+            new PrivateChannel('user-'.$this->id),
         ];
     }
 
     public function broadcastAs(): string
     {
-        return 'pr';
-    }
-    public function broadcastWith(): array
-    {
-        return [
-            'message' => $this->message
-        ];
+        return 'ev';
     }
 }

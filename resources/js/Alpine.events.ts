@@ -1,5 +1,6 @@
 let n = 0;
-export function message() {
+
+export function message(event: string) {
     window.Alpine.data("receiver", () => ({
         async init() {
             this.text = "waiting for queue ...";
@@ -8,7 +9,7 @@ export function message() {
             ["x-text"]() {
                 return this.text;
             },
-            async ["@message:receive.window"](ev) {
+            async [`@${event}.window`](ev) {
                 await new Promise((resolve) => setTimeout(resolve, 500));
                 this.text = ev.detail;
             },

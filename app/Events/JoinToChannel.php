@@ -2,25 +2,23 @@
 
 namespace App\Events;
 
-use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Auth;
 
-class CreateUserLogo implements ShouldBroadcast
+class JoinToChannel
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-
-    public function __construct(public string $logo, public int $id)
+    public function __construct(public string $channel, public int $id)
     {
     }
 
@@ -29,15 +27,4 @@ class CreateUserLogo implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
-    {
-        return [
-            new PrivateChannel("update.logo.$this->id"),
-        ];
-    }
-
-    public function broadcastAs(): string
-    {
-        return 'logo-updated';
-    }
 }

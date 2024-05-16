@@ -10,14 +10,14 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class TestingPrivate implements ShouldBroadcast
+class UserChatRoom implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public int $id)
+    public function __construct(public string $data)
     {
     }
 
@@ -29,13 +29,12 @@ class TestingPrivate implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('testing.channel.'.$this->id),
+            new PresenceChannel('my_room'),
         ];
     }
 
-
     public function broadcastAs(): string
     {
-        return 'testing.event';
+        return 'join_event';
     }
 }

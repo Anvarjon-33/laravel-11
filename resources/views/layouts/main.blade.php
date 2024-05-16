@@ -11,9 +11,6 @@
     <title>Document</title>
     @vite('resources/js/app.js')
 
-    <script>
-        window.laravel = {!! json_encode([ 'user' => auth()->check() ? auth()->user()->id : null ]) !!};
-    </script>
 
 </head>
 <body class="bg-amber-100 min-h-[100vh]">
@@ -26,5 +23,8 @@
     @yield('users')
 </div>
 </body>
-@livewire('empty-component')
 </html>
+
+
+@livewire('empty-component')
+{{--This is non contain any component, but loads Livewire ant Alpine scripts--}}

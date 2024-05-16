@@ -1,40 +1,23 @@
 import * as events from "./Alpine.events";
+import * as regs from './regisiter.echo'
 
-addEventListener("alpine:init", () => {
-    events.message();
+let token: string = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
-    window.addEventListener("DOMContentLoaded", () => {
-        /**
-         * @Public listening for Public broadcasting
-         * */
-        window?.Echo?.channel("channel_pub").listen(".event_pub", (ev) => {
-            console.log(ev);
-            dispatchEvent(
-                new CustomEvent("message:receive", { detail: ev.message })
-            );
-        });
+addEventListener("alpine:init", async () => {
+    events.message('queue:run');
 
-        /**
-         * @Private listenong for private broadcasting
-         * */
-        window.Echo.private("message").listen(".pr", (val) => {
-            console.log(val);
-        });
+    addEventListener('DOMContentLoaded', async () => {
 
-        window.Echo.private(`update.logo.${window.laravel.user}`).listen(
-            ".logo-updated",
-            (val) => {
-                console.log("PRIVATE CHANNEL IS WORK !!!");
-                console.log(val);
-            }
-        );
+        regs.publicInfo('queue:run')
 
-        window.Echo.private(`testing.channel.${window.laravel.user}`).listen(
-            ".testing.event",
-            (val) => {
-                console.log("PRIVATE CHANNEL IS WORK !!!, TEsting Channel");
-                console.log(val);
-            }
-        );
-    });
+        let {data: id} = await window.axios.post(`/sanctum/${token}`);
+
+        console.log(id)
+
+        window.Echo.private(`user-${id}`).listen('.ev', (e) => {
+            console.log(e)
+        })
+
+
+    })
 });

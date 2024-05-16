@@ -4,10 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    echo 'Hello world from vs codee';
-   \App\Events\ForPrivate::dispatch('Private_events', 'message');
-//    broadcast(new \App\Events\ForPrivate('Notification', 'example'));
+Route::get('/', function (\Illuminate\Http\Request $request) {
+    //\App\Events\Debugger::dispatch('Queue is listening ...');
+//\App\Events\UserPrivateEvent::dispatch('message for private event');
     return view('main.welcome');
 });
 
@@ -23,5 +22,15 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('/users', \App\Http\Controllers\UserPostController::class);
 Route::post('/users/store', [\App\Http\Controllers\UserPostController::class, 'store']);
+
+Route::post('/sanctum/{token}', function (\Illuminate\Http\Request $request, string $token) {
+    if (
+        \Illuminate\Support\Facades\Auth::check()
+        &&
+        csrf_token() === $token
+    ) {
+        return \Illuminate\Support\Facades\Auth::id();
+    }
+})->middleware('auth');
 
 require __DIR__.'/auth.php';

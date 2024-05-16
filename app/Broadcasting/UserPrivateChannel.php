@@ -5,7 +5,7 @@ namespace App\Broadcasting;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class PrivateChannel
+class UserPrivateChannel
 {
     /**
      * Create a new channel instance.
@@ -18,8 +18,8 @@ class PrivateChannel
     /**
      * Authenticate the user's access to the channel.
      */
-    public function join(User $user): bool
+    public function join(User $user, $id): array|bool
     {
-        return Auth::check();
+        return Auth::check() && $user->id == $id;
     }
 }

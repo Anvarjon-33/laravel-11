@@ -10,8 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite('resources/js/app.js')
-
-
 </head>
 <body class="bg-amber-100 min-h-[100vh]">
 <div class="bg-amber-50 mx-auto w-[80%] min-h-[100vh] p-2">

@@ -1,6 +1,5 @@
+// @ts-ignore
 import defaultTheme from 'tailwindcss/defaultTheme';
-// import daisyui from "daisyui";
-
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -8,6 +7,16 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        /*
+        {
+            raw: (async () => {
+                let res: AxiosResponse;
+                res = await axios.get('http://192.168.1.6:8000/post_view')
+                console.log(res.data)
+                return `${res.data}`
+            })(),
+        }
+        */
     ],
 
     theme: {
@@ -17,6 +26,5 @@ export default {
             },
         },
     },
-
     plugins: [require('daisyui')],
 };

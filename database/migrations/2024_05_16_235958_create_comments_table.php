@@ -10,7 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->morphs('commentable');
+        });
     }
 
     /**
@@ -18,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('comments');
     }
 };

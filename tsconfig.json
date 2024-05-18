@@ -12,6 +12,5 @@
       "DOM",
       "DOM.Iterable"
     ]
-  },
-  "exclude": ["./tailwind.config.js"]
+  }
 }

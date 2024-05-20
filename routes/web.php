@@ -5,8 +5,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
-    \App\Events\Debugger::dispatch('Queue is listening ...');
-    \App\Events\UserPrivateEvent::dispatch('message for private event');
+//    \App\Events\Debugger::dispatch('Queue is listening ...');
+//    \App\Events\UserPrivateEvent::dispatch('message for private event');
     return view('main.welcome');
 });
 
@@ -37,6 +37,5 @@ Route::post('/sanctum/{token}', function (\Illuminate\Http\Request $request, str
         return \Illuminate\Support\Facades\Auth::id();
     }
 })->middleware('auth');
-
 
 require __DIR__.'/auth.php';

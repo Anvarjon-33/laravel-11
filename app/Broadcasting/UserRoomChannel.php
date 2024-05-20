@@ -21,8 +21,7 @@ class UserRoomChannel
     public function join(User $user, $room): array|bool
     {
         return [
-            $user->id,
-            ...['other_users']
+            $user->email
         ];
     }
 }

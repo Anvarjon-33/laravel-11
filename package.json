@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.13",
     "@types/node": "^20.12.7",
     "alpinejs": "^3.4.2",
     "autoprefixer": "^10.4.2",
@@ -22,6 +23,7 @@
     "vite": "^5.0"
   },
   "dependencies": {
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "tw-elements": "^2.0.0"
   }
 }

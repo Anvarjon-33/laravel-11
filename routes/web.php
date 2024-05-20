@@ -5,8 +5,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
-//    \App\Events\Debugger::dispatch('Queue is listening ...');
-//    \App\Events\UserPrivateEvent::dispatch('message for private event');
+    \App\Events\Debugger::dispatch('Queue is listening ...');
+    \App\Events\UserPrivateEvent::dispatch('message for private event');
     return view('main.welcome');
 });
 
@@ -27,7 +27,6 @@ Route::get('/post_view', [\App\Http\Controllers\PostImageComment::class, 'index'
 Route::post('/post_save', [\App\Http\Controllers\PostImageComment::class, 'post_save']);
 Route::post('/image_save', [\App\Http\Controllers\PostImageComment::class, 'image_save']);
 Route::post('/comment_save', [\App\Http\Controllers\PostImageComment::class, 'comment_save']);
-
 
 Route::post('/sanctum/{token}', function (\Illuminate\Http\Request $request, string $token) {
     if (

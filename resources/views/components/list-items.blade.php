@@ -1,13 +1,14 @@
-@props(['items'])
-{{--@livewire('save-posts')--}}
-<div {{$attributes->merge(['class' => 'p-2 m-2'])}}>
-    @if($items->count()>0)
-        <ul>
-            @foreach($items as $item)
-                <li class="list-disc">
-                    {{$item}}
-                </li>
-            @endforeach
-        </ul>
+@props(['items', 'first_slot'])
+
+<div>
+    The First row
+    <hr>
+    {{$slot}}
+    <hr>
+    The Second row
+    <hr>
+    {{$compSlot('Methos is run')}}
+    @if( !$first_slot->isEmpty() )
+        {{$first_slot}}
     @endif
 </div>

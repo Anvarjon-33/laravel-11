@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Events\Debugger;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -11,10 +12,10 @@ class ListItems extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct
-    (
-        public string $color = 'red-100'
-    ) {
+    public mixed $item = null;
+
+    public function __construct()
+    {
     }
 
     /**
@@ -23,5 +24,10 @@ class ListItems extends Component
     public function render(): View|Closure|string
     {
         return view('components.list-items');
+    }
+
+    public function compSlot(string $text): void
+    {
+        $this->item = $text;
     }
 }

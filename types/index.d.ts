@@ -6,7 +6,8 @@ declare global {
         axios: any;
         Alpine: any;
         Livewire: any;
-        laravel: any
+        laravel: any,
+        initTWE: any
     }
 }
 

@@ -2,6 +2,7 @@
 
 namespace App\Broadcasting;
 
+use App\Events\Debugger;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,14 +13,16 @@ class UserPrivateChannel
      */
     public function __construct()
     {
-        //
+        Debugger::dispatch([
+            '$user, $id'
+        ]);
     }
 
     /**
      * Authenticate the user's access to the channel.
      */
-    public function join(User $user, $id): array|bool
+    public function join(User $user, int $id): array|bool
     {
-        return Auth::check() && $user->id == $id;
+        return $user->id == $id;
     }
 }

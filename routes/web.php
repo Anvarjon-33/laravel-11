@@ -5,8 +5,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
-    \App\Events\Debugger::dispatch('Queue is Listen');
-    //    \App\Events\UserPrivateEvent::dispatch('message for private event');
+
+    \App\Events\UserSec::dispatch('Secret_message', $request->user());
+
+//    \App\Events\Debugger::dispatch('Queue is Listen !!');
     return view('main.welcome');
 });
 
@@ -27,15 +29,5 @@ Route::get('/post_view', [\App\Http\Controllers\PostImageComment::class, 'index'
 Route::post('/post_save', [\App\Http\Controllers\PostImageComment::class, 'post_save']);
 Route::post('/image_save', [\App\Http\Controllers\PostImageComment::class, 'image_save']);
 Route::post('/comment_save', [\App\Http\Controllers\PostImageComment::class, 'comment_save']);
-
-Route::post('/sanctum/{token}', function (\Illuminate\Http\Request $request, string $token) {
-    if (
-        \Illuminate\Support\Facades\Auth::check()
-        &&
-        csrf_token() === $token
-    ) {
-        return \Illuminate\Support\Facades\Auth::id();
-    }
-})->middleware('auth');
 
 require __DIR__.'/auth.php';

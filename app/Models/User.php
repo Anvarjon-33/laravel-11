@@ -50,14 +50,9 @@ class User extends Authenticatable
         ];
     }
 
-    public function room_items(): HasMany
+    public function user_in_room(): BelongsToMany
     {
-        return $this->hasMany(MessageRoom::class, 'user_id');
-    }
-
-    public function joined_channel(): BelongsToMany
-    {
-        return $this->belongsToMany();
+        return $this->belongsToMany(UserRoom::class, 'user_joined_rooms', 'user_id', 'room_id');
     }
 
 }

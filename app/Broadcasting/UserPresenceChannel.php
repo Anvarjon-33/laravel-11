@@ -22,7 +22,6 @@ class UserPresenceChannel
         if ($user->canJoinRoom($room_id)) {
             return [
                 'id' => $user->id, 'name' => $user->name
-
             ];
         }
         return false;

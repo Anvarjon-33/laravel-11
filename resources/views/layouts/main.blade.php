@@ -13,10 +13,6 @@
 </head>
 <body class="bg-amber-100 min-h-[100vh]">
 <div class="bg-amber-50 mx-auto w-[80%] min-h-[100vh] p-2">
-
-    <h1 class="text-5xl text-red-300 p-3 m-4 h-[50px] relative" x-data="receiver">
-        <span class="h-[100%]" x-transition.fade.duration.500 x-bind="trigger"></span>
-    </h1>
     @yield('html-content')
     @yield('users')
 </div>
@@ -25,4 +21,4 @@
 
 
 @livewire('empty-component')
-{{--This is non contain any component, but loads Livewire ant Alpine scripts--}}
+{{--This is not contain any component, but loads Livewire ant Alpine scripts--}}

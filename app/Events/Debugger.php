@@ -29,11 +29,6 @@ Debugger implements ShouldBroadcast
      */
     public function broadcastOn(): Channel
     {
-        return new Channel('pub_ch');
-    }
-
-    public function broadcastAs(): string
-    {
-        return 'pub_e';
+        return new Channel('pub');
     }
 }

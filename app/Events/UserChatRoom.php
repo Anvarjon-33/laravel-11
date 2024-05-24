@@ -17,7 +17,7 @@ class UserChatRoom implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct(public string $room_name)
+    public function __construct(public string $room)
     {
     }
 
@@ -29,7 +29,7 @@ class UserChatRoom implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PresenceChannel('room.'.$this->room_name),
+            new PresenceChannel('room.'.$this->room),
         ];
     }
 }

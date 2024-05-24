@@ -5,6 +5,7 @@ namespace App\Broadcasting;
 use App\Events\Debugger;
 use App\Models\User;
 use App\Models\UserRoom;
+use Illuminate\Support\Collection;
 
 class UserPresenceRoom
 {
@@ -19,10 +20,11 @@ class UserPresenceRoom
     /**
      * Authenticate the user's access to the channel.
      */
-    public function join(User $user, $room_name): array|bool
+    public function join(User $user, $room)
     {
-        return UserRoom::where('name', $room_name)->first()->members->map(fn($el) => [
-            'name' => $el->name
-        ]);
+        return UserRoom::where('name', $room)->first()->members->map(fn($user) => ([
+            'id' => $user->id,
+            'name' => $user->name,
+        ]));
     }
 }

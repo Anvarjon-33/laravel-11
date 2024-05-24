@@ -5,12 +5,15 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 
+/**
+ * @property Collection $joined_rooms
+ */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, BroadcastsEvents;
@@ -50,9 +53,19 @@ class User extends Authenticatable
         ];
     }
 
-    public function user_in_room(): BelongsToMany
+    public function joined_rooms(): BelongsToMany
     {
         return $this->belongsToMany(UserRoom::class, 'user_joined_rooms', 'user_id', 'room_id');
     }
 
+
+    public function rooms(): HasMany
+    {
+        return $this->hasMany(UserRoom::class);
+    }
+
+    public function CanJoinRoom(string $room_name): mixed
+    {
+        return $this->joined_rooms->map(fn($el) => $el->name)->contains($room_name);
+    }
 }

@@ -5,10 +5,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
-
     \App\Events\UserSec::dispatch('Secret_message', $request->user());
-
-//    \App\Events\Debugger::dispatch('Queue is Listen !!');
+    \App\Events\UserChatRoom::dispatch('vivo');
+    //    \App\Events\Debugger::dispatch('Queue is Listen !!');
     return view('main.welcome');
 });
 

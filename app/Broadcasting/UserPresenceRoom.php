@@ -4,25 +4,25 @@ namespace App\Broadcasting;
 
 use App\Events\Debugger;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Models\UserRoom;
 
-class UserPrivateChannel
+class UserPresenceRoom
 {
     /**
      * Create a new channel instance.
      */
     public function __construct()
     {
-        Debugger::dispatch([
-            '$user, $id'
-        ]);
+        //
     }
 
     /**
      * Authenticate the user's access to the channel.
      */
-    public function join(User $user, int $id): array|bool
+    public function join(User $user, $room_name): array|bool
     {
-        return $user->id == $id;
+        return UserRoom::where('name', $room_name)->first()->members->map(fn($el) => [
+            'name' => $el->name
+        ]);
     }
 }

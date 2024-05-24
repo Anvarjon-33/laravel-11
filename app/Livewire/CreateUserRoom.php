@@ -2,9 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Models\User;
 use App\Models\UserRoom;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -12,14 +15,17 @@ use Livewire\Component;
 class CreateUserRoom extends Component
 {
     #[Locked]
-    public ?int $userId = null;
+    public User|null $user;
 
     #[Validate('required|between:3,10|unique:user_rooms,name')]
     public string $room = '';
 
-    public function mount(): void
+    public Collection $my_rooms;
+
+    public function mount(Request $request): void
     {
-        $this->userId = Auth::id();
+        $this->user = $request->user();
+        $this->my_rooms = $this->user->rooms->map(fn($room) => $room->only(['name']))->flatten();
     }
 
     public function render(): View
@@ -36,11 +42,11 @@ class CreateUserRoom extends Component
     public function setUserRoom(): void
     {
         UserRoom::create([
-            'user_id' => $this->userId,
+            'user_id' => $this->user->id,
             'name' => $this->room,
         ]);
-        CreateUserRoom::dispatch($this->userId);
         session()->flash('status', 'Room created successfully!');
+        $this->my_rooms->push($this->room);
         $this->reset(['room']);
     }
 }

@@ -20,4 +20,8 @@ export default {
         require('@tailwindcss/typography'),
         require('daisyui')
     ],
+    safelist: [
+        {pattern: /badge-./},
+        {pattern: /text-./},
+    ]
 };

@@ -1,6 +1,17 @@
 <div class="card card-compact w-96 bg-base-100 shadow-xl" x-data>
     <div class="card-body">
-        <h2 class="card-title">Create A Channel</h2>
+        <h2 class="card-title">My Channels</h2>
+        {{--Creating Channels--}}
+        @if($my_rooms->isEmpty())
+            You have no channel, create It
+        @else
+            <div class="flex flex-wrap gap-1">
+                @foreach($my_rooms as $room)
+                    <span class="badge badge-success badge-outline text-xs">{{$room}}</span>
+                @endforeach
+            </div>
+        @endif
+
         <span x-transition class="text-warning">{{session()->get('status')}}</span>
         <p>Type the Channel name ...</p>
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\UserRoom;
 use Illuminate\Support\Facades\Broadcast;
 
 /**
@@ -13,14 +14,12 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 /**
  * User Private Channel (Only for spesific Users)
  */
-Broadcast::channel('user.room.{id}', \App\Broadcasting\UserPrivateChannel::class);
-
-/**
- * Presense channels for User groups
- */
-Broadcast::channel('room-{room}', \App\Broadcasting\UserPrivateChannel::class);
+Broadcast::channel('room.{room_name}', function ($user, $room_name) {
+    return UserRoom::where('name', $room_name)->first()->members->map(fn($el) => [
+        'name' => $el->name, 'id' => $el->id
+    ]);
+});
 
 Broadcast::channel('person.{id}', function (User $user, $id) {
-    \App\Events\Debugger::dispatch($id);
     return true;
 });

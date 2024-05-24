@@ -4,6 +4,10 @@ namespace App\Livewire;
 
 use App\Events\Debugger;
 use App\Models\User;
+use App\Models\UserJoinedRooms;
+use App\Models\UserRoom;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Livewire\Attributes\Locked;
@@ -13,41 +17,30 @@ use Livewire\Component;
 class InfoMessage extends Component
 {
     #[Locked]
-    public int $id;
+    public User $user;
 
-    public string $info = 'waiting for Channel ...';
-    public ?array $rooms = null;
-    public string $pr = '--------------------------------------';
+    public Collection $rooms;
 
-    public function mount($id): void
-    {
-        $this->id = $id;
-        if (Auth::check()) {
-            $this->rooms = User::find($this->id)->rooms;
-            session()->flash('user_rooms', $this->rooms);
-        }
-    }
+    public Collection $joined_rooms;
 
     public function render(): \Illuminate\View\View
     {
         return view('livewire.info-message');
     }
 
-    #[On("echo:pub,Debugger")]
-    public function notifier($payload): void
+    public function mount(Request $request): void
     {
-        $this->info = $payload['message'];
-        $this->dispatch('notifier');
+        $this->user = $request->user();
+        $this->joined_rooms = $this->user->joined_rooms;
+        $this->rooms = UserRoom::all()->where('user_id', '!=', $this->user->id)->diff($this->joined_rooms);
     }
 
-    public function new_room($payload): void
+    public function join_to_room(string $room): void
     {
-        dd($payload);
-    }
-
-    #[On('echo-private:person.{id},UserSec')]
-    public function private_data($payload): void
-    {
-        $this->pr = $payload['message'];
+        $room_id = UserRoom::all()->where('name', $room)->first()->id;
+        UserJoinedRooms::create([
+            'user_id' => $this->user->id,
+            'room_id' => $room_id,
+        ]);
     }
 }

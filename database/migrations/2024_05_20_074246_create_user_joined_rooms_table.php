@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->uuid('room_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('room_id')->references('id')->on('user_rooms');
+            $table->unique(['user_id', 'room_id']);
             $table->timestamps();
         });
     }

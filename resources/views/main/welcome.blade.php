@@ -8,5 +8,4 @@
     <div class="p-5 m-4 bg-gray-200 rounded-2xl">
         <livewire:user-presense></livewire:user-presense>
     </div>
-
 @endsection

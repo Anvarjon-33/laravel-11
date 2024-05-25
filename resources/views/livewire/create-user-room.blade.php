@@ -17,13 +17,25 @@
 
         {{session()->get('rooms')}}
 
-        <form @submit.prevent wire:submit="create_room">
+        <script>
+            function freq() {
+                let e;
+                if (e = this.$el.querySelector('.animate-freq-bounce')) {
+                    e.style.display = 'none';
+                    setTimeout(() => {
+                        e.style.display = 'block';
+                    }, 0)
+                }
+            }
+        </script>
+
+        <form @submit.prevent="freq" wire:submit="create_room">
             <input
                     type="text" @if(!Auth::check()) disabled @endif class="input input-bordered w-full"
                     wire:model="room"
             >
             @error('room')
-            <div class="text-error">{{$message}}</div>
+            <div class="text-error animate-freq-bounce">{{$message}}</div>
             @enderror
             <div class="card-actions justify-end mt-5">
                 <button

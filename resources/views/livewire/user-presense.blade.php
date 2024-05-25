@@ -9,11 +9,8 @@
     @endforeach
 
     <div class="bg-red-50 flex-1 p-3 rounded-badge">
-        <button class="btn btn-success" wire:click="join_to_room('vivo')">Click for join
+        <button class="btn btn-success relative" wire:click="join_to_room('vivo')">Click for
+            join
         </button>
     </div>
-    <script>
-        addEventListener('alpine:init', () => {
-        })
-    </script>
 </div>

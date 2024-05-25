@@ -14,6 +14,19 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            keyframes: {
+                refine: {
+                    "33%": {
+                        marginLeft: "10px",
+                    },
+                    "66%": {
+                        marginRight: "10px",
+                    },
+                },
+            },
+            animation: {
+                "freq-bounce": "refine 0.2s 2"
+            }
         },
     },
     plugins: [

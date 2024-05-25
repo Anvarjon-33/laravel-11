@@ -13,6 +13,10 @@
 </head>
 <body class="bg-amber-100 min-h-[100vh]">
 <div class="bg-amber-50 mx-auto w-[80%] min-h-[100vh] p-2">
+
+    <div class="phone-3 m-3">
+        <livewire:debugger-info/>
+    </div>
     @yield('html-content')
     @yield('users')
 </div>

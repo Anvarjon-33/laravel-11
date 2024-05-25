@@ -1,17 +1,19 @@
 <div class="flex justify-between gap-7">
-    <div>
-        @foreach($here_users as $users)
+    @foreach($here_users as $users)
+        <div class="bg-gray-50 rounded-full p-3">
             {{$users['name']}}
-            @if(isset($users['owner']))
-                <span class="text-xs text-success">owner</span>
+            @if(isset($users['owner']) && $users['owner'])
+                <div class="text-xs text-success p-0 m-0">owner</div>
             @endif
-            <hr>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
 
     <div class="bg-red-50 flex-1 p-3 rounded-badge">
         <button class="btn btn-success" wire:click="join_to_room('vivo')">Click for join
         </button>
     </div>
-
+    <script>
+        addEventListener('alpine:init', () => {
+        })
+    </script>
 </div>

@@ -9,6 +9,7 @@ use App\Events\UserSec;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
@@ -32,7 +33,7 @@ class UserPresense extends Component
     {
         $this->id = $request->user()->id;
         $this->message = '';
-        $this->room = $request->user()->joined_rooms->first()->name;
+        $this->room = $_ = Session::get('last_room') ?? '';
     }
 
     public function render(): View
@@ -68,7 +69,8 @@ class UserPresense extends Component
 
     public function join_to_room(string $room): void
     {
-        $this->room = $room;
+        Session::put('last_room', $room);
+        $this->js('window.location.reload()');
     }
 
 }

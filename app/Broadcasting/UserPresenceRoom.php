@@ -23,10 +23,17 @@ class UserPresenceRoom
      */
     public function join(User $user, $room)
     {
+        if ($user->rooms->where('name', $room)->count() > 0) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'owner' => true
+            ];
+        }
         if ($user->CanJoinRoom($room)) {
             return [
                 'id' => $user->id,
-                'name' => $user->name
+                'name' => $user->name,
             ];
         }
     }

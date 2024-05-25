@@ -6,6 +6,7 @@ use App\Events\Debugger;
 use App\Models\User;
 use App\Models\UserRoom;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class UserPresenceRoom
 {
@@ -22,9 +23,11 @@ class UserPresenceRoom
      */
     public function join(User $user, $room)
     {
-        return UserRoom::where('name', $room)->first()->members->map(fn($user) => ([
-            'id' => $user->id,
-            'name' => $user->name,
-        ]));
+        if ($user->CanJoinRoom($room)) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name
+            ];
+        }
     }
 }

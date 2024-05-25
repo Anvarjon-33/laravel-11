@@ -64,8 +64,9 @@ class User extends Authenticatable
         return $this->hasMany(UserRoom::class);
     }
 
-    public function CanJoinRoom(string $room_name): mixed
+    public function CanJoinRoom(string $room_name): bool
     {
-        return $this->joined_rooms->map(fn($el) => $el->name)->contains($room_name);
+        return $this->joined_rooms->map(fn($el) => $el->name)->contains($room_name) || $this->rooms->map(fn($el
+            ) => $el->name)->contains($room_name);
     }
 }

@@ -32,8 +32,7 @@ class UserPresense extends Component
     {
         $this->id = $request->user()->id;
         $this->message = '';
-        $this->room = '';
-        $this->users = User::all();
+        $this->room = $request->user()->joined_rooms->first()->name;
     }
 
     public function render(): View
@@ -42,6 +41,11 @@ class UserPresense extends Component
     }
 
     #[On('echo-presence:room.{room},UserChatRoom')]
+    public function _user_char_room($users): void
+    {
+        $this->here_users = $users;
+    }
+
     #[On('echo-presence:room.{room},here')]
     public function _here_users($users): void
     {
@@ -57,18 +61,14 @@ class UserPresense extends Component
     #[On('echo-presence:room.{room},leaving')]
     public function _leaving($user): void
     {
+        $this->here_users = array_filter($this->here_users, function ($_user) use ($user) {
+            return $_user['id'] != $user['id'];
+        });
     }
 
     public function join_to_room(string $room): void
     {
         $this->room = $room;
-        UserChatRoom::dispatch($room);
     }
 
-    #[On('echo:pub,Debugger')]
-    public function debug($data): void
-    {
-        $data = json_encode($data);
-        $this->js("console.log('$data')");
-    }
 }

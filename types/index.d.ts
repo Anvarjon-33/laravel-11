@@ -7,7 +7,7 @@ declare global {
         Alpine: any;
         Livewire: any;
         laravel: any,
-        initTWE: any
+        initTWE: any,
     }
 }
 

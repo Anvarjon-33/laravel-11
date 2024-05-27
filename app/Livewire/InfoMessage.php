@@ -33,6 +33,7 @@ class InfoMessage extends Component
         $this->user = $request->user();
         $this->joined_rooms = $this->user->joined_rooms;
         $this->rooms = UserRoom::all()->where('user_id', '!=', $this->user->id)->diff($this->joined_rooms);
+        $this->dispatch('rooms_for_join', $this->rooms);
     }
 
     public function join_to_room(string $room): void

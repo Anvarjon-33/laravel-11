@@ -16,6 +16,7 @@
         })
     </script>
 
+
     <div class="bg-red-50 flex-1 p-3 rounded-badge">
         <template x-for="(value,index) in rooms" :key="index">
             <button

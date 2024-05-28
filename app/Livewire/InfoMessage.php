@@ -19,9 +19,9 @@ class InfoMessage extends Component
     #[Locked]
     public User $user;
 
-    public Collection $rooms;
+    public Collection|null $rooms = null;
 
-    public Collection $joined_rooms;
+    public Collection|null $joined_rooms = null;
 
     public function render(): \Illuminate\View\View
     {
@@ -30,10 +30,12 @@ class InfoMessage extends Component
 
     public function mount(Request $request): void
     {
-        $this->user = $request->user();
-        $this->joined_rooms = $this->user->joined_rooms;
-        $this->rooms = UserRoom::all()->where('user_id', '!=', $this->user->id)->diff($this->joined_rooms);
-        $this->dispatch('rooms_for_join', $this->rooms);
+        if (Auth::user()) {
+            $this->user = $request->user();
+            $this->joined_rooms = $this->user->joined_rooms;
+            $this->rooms = UserRoom::all()->where('user_id', '!=', $this->user->id)->diff($this->joined_rooms);
+            $this->dispatch('rooms_for_join', $this->rooms);
+        }
     }
 
     public function join_to_room(string $room): void

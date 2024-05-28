@@ -9,6 +9,7 @@ use App\Events\UserSec;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -22,7 +23,7 @@ class UserPresense extends Component
     public int $id;
 
     #[Locked]
-    public string $room;
+    public string $room = 'vivo_1';
 
     public string $message;
 
@@ -31,9 +32,11 @@ class UserPresense extends Component
 
     public function mount(Request $request): void
     {
-        $this->id = $request->user()->id;
-        $this->message = '';
-        $this->room = $_ = Session::get('last_room') ?? '';
+        if (Auth::check()) {
+            $this->id = $request->user()->id;
+            $this->message = '';
+            $this->room = $_ = Session::get('last_room') ?? '';
+        }
     }
 
     public function render(): View

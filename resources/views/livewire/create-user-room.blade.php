@@ -2,7 +2,7 @@
     <div class="card-body">
         <h2 class="card-title">My Channels</h2>
         {{--Creating Channels--}}
-        @if($my_rooms->isEmpty())
+        @if(is_null($my_rooms))
             You have no channel, create It
         @else
             <div class="flex flex-wrap gap-1">

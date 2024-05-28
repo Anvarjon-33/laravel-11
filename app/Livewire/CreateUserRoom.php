@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserRoom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
@@ -20,12 +21,16 @@ class CreateUserRoom extends Component
     #[Validate('required|between:3,10|unique:user_rooms,name')]
     public string $room = '';
 
-    public Collection $my_rooms;
+    public Collection|null $my_rooms = null;
 
     public function mount(Request $request): void
     {
-        $this->user = $request->user();
-        $this->my_rooms = $this->user->rooms->map(fn($room) => $room->only(['name']))->flatten();
+        if (Auth::check()) {
+            $this->user = $request->user();
+            if (Auth::user()->rooms->count() > 0) {
+                $this->my_rooms = $this->user->rooms->map(fn($room) => $room->only(['name']))->flatten();
+            }
+        }
     }
 
     public function render(): View

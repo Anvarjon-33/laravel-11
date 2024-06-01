@@ -8,12 +8,16 @@ Route::get('/', function (\Illuminate\Http\Request $request) {
 
     $ref = new ReflectionClass(\App\Http\Controllers\AttrController::class);
 
-    $ref = $ref->getAttributes(\App\Attributes\Routes::class);
-    $ref = reset($ref);
 
-    var_dump(
-        $ref->newInstance()
-    );
+    foreach ($ref->getMethods() as $method) {
+        foreach ($method->getAttributes() as $method) {
+            echo '<pre>';
+            $method = $method->newInstance();
+            print_r($method);
+            echo '</pre>';
+        }
+    }
+
 
     return view('main.welcome');
 });

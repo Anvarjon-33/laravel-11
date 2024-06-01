@@ -5,6 +5,16 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
+
+    $ref = new ReflectionClass(\App\Http\Controllers\AttrController::class);
+
+    $ref = $ref->getAttributes(\App\Attributes\Routes::class);
+    $ref = reset($ref);
+
+    var_dump(
+        $ref->newInstance()
+    );
+
     return view('main.welcome');
 });
 

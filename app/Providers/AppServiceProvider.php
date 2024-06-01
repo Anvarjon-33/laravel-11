@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\ControllerWithAttr;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**
@@ -19,6 +20,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        /**
+         * Register Attribute Methods for Routing
+         */
+        $attr_reflection = new \ReflectionClass(ControllerWithAttr::class);
+        foreach ($attr_reflection->getMethods() as $method) {
+            foreach ($method->getAttributes() as $attr) {
+                $method_type = explode('\\', $attr->getName())[count(explode('\\', $attr->getName())) - 1];
+                $attr = $attr->newInstance();
+                call_user_func_array(
+                    array(
+                        Route::class,
+                        strtolower($method_type)
+                    ),
+                    array(
+                        $attr->path,
+                        [$method->class, $method->name],
+                    )
+                );
+            }
+        }
     }
 }

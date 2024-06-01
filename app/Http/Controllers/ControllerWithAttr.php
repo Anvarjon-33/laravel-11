@@ -21,8 +21,8 @@ class ControllerWithAttr extends Controller
     }
 
     #[GET('/attr/{id}')]
-    public function create(): string
+    public function create($id): string
     {
-        return 'Create Method';
+        return 'Create Method'.'<hr>'."<span class='text-3xl text-red-500 bg-amber-500'>$id</span>";
     }
 }

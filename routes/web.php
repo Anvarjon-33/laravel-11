@@ -5,29 +5,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
-
-    $ref = new ReflectionClass(\App\Http\Controllers\ControllerWithAttr::class);
-
-
-    foreach ($ref->getMethods() as $method) {
-        foreach ($method->getAttributes() as $attr) {
-            $name_space = $attr->getName();
-            $name_arr = explode('\\', $name_space);
-            $method_name = $name_arr[count($name_arr) - 1];
-            $attr = $attr->newInstance();
-
-            precho(Route::class."::".strtolower($method_name));
-
-
-//            call_user_func(Route::class."::".strtolower($method_name), [
-//                '/', function () {
-//                }
-//            ]);
-
-
-        }
-    }
-
     return view('main.welcome');
 });
 

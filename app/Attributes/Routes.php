@@ -11,6 +11,5 @@ class Routes
     public function __construct($path)
     {
         $this->path = $path;
-
     }
 }

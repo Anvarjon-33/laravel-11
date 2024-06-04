@@ -26,4 +26,7 @@ Route::post('/post_save', [\App\Http\Controllers\PostImageComment::class, 'post_
 Route::post('/image_save', [\App\Http\Controllers\PostImageComment::class, 'image_save']);
 Route::post('/comment_save', [\App\Http\Controllers\PostImageComment::class, 'comment_save']);
 
+Route::get('/some', fn() => 'Hello World');
+Route::get('/some_1', fn() => 'Hello World');
+
 require __DIR__.'/auth.php';

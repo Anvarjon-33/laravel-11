@@ -1,13 +1,14 @@
 <?php
 
+use App\Http\Controllers\PostImageComment;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserPostController;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-Route::get('/', function (Request $request) {
+Route::get('/', function () {
     return view('main.welcome');
 });
 
@@ -21,13 +22,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('/users', \App\Http\Controllers\UserPostController::class);
-Route::post('/users/store', [\App\Http\Controllers\UserPostController::class, 'store']);
+Route::resource('/users', UserPostController::class);
+Route::post('/users/store', [UserPostController::class, 'store']);
 
-Route::get('/post_view', [\App\Http\Controllers\PostImageComment::class, 'index']);
-Route::post('/post_save', [\App\Http\Controllers\PostImageComment::class, 'post_save']);
-Route::post('/image_save', [\App\Http\Controllers\PostImageComment::class, 'image_save']);
-Route::post('/comment_save', [\App\Http\Controllers\PostImageComment::class, 'comment_save']);
+Route::get('/post_view', [PostImageComment::class, 'index']);
+Route::post('/post_save', [PostImageComment::class, 'post_save']);
+Route::post('/image_save', [PostImageComment::class, 'image_save']);
+Route::post('/comment_save', [PostImageComment::class, 'comment_save']);
 
 Route::get('some', fn() => 'SOME url');
 Route::get('some_1', fn() => 'SOME_1 url');
@@ -43,7 +44,7 @@ Route::get('user/{id}', function (Request $request, int $id) {
         ]);
         echo '</pre>';
     } catch (ModelNotFoundException $e) {
-//        report($e->getMessage());
+        report($e->getMessage());
         throw new ModelNotFoundException('User not found on ID: '.$id);
     }
 });

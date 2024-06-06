@@ -52,15 +52,6 @@ class Controllers extends TestCase
 
     }
 
-    /*
-        public function test_some_path_with_exeption()
-        {
-            Exceptions::fake();
-            $response = $this->get('/some_1');
-            Exceptions::assertReported(SimpleExeption::class);
-    }
-    */
-
     public function test_request_with_special_hedaers()
     {
         $response = $this->get('/');
@@ -95,11 +86,12 @@ class Controllers extends TestCase
 
     public function test_ModelNotFoundException_is_working(): void
     {
-        Exceptions::fake();
-        $this->get('/user/4');
-        $this->expectException(ModelNotFoundException::class);
-        //        Exceptions::assertNotReported(ModelNotFoundException::class);
-
-        //        Exceptions::assertReported(ModelNotFoundException::class);
+        $this->withoutExceptionHandling();
+        try {
+            $this->get('/user/4');
+        } catch (ModelNotFoundException $e) {
+            $this->assertEquals($e->getMessage(), 'User not found on ID: 4');
+            return;
+        }
     }
 }

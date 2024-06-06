@@ -10,13 +10,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property Collection $joined_rooms
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, BroadcastsEvents;
+    use HasFactory, Notifiable, BroadcastsEvents, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

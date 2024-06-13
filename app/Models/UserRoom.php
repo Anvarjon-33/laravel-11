@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 
 class UserRoom extends Model
@@ -18,10 +16,12 @@ class UserRoom extends Model
      * @var int|mixed
      */
     protected $table = 'user_rooms';
+
     public $keyType = 'string';
+
     public $fillable = [
         'user_id',
-        'name'
+        'name',
     ];
 
     public function user(): BelongsTo

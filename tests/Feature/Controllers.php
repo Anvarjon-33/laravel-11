@@ -2,12 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Exceptions\SimpleExeption;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Exceptions;
 use Tests\TestCase;
 
 class Controllers extends TestCase
@@ -15,6 +13,7 @@ class Controllers extends TestCase
     use RefreshDatabase, WithFaker;
 
     protected User $user;
+
     protected User $user_with_token;
 
     public function setUp(): void
@@ -22,7 +21,7 @@ class Controllers extends TestCase
         parent::setUp();
         $this->user = User::factory()->create();
         $this->user_with_token = User::factory()->create([
-            'remember_token' => $this->user->createToken('sanctum')->plainTextToken
+            'remember_token' => $this->user->createToken('sanctum')->plainTextToken,
         ]);
     }
 
@@ -88,9 +87,10 @@ class Controllers extends TestCase
     {
         $this->withoutExceptionHandling();
         try {
-            $this->get('/user/4');
+            $this->get('/user/'.($_ = User::all()->count() + 1));
         } catch (ModelNotFoundException $e) {
-            $this->assertEquals($e->getMessage(), 'User not found on ID: 4');
+            $this->assertEquals($e->getMessage(), 'User not found on ID: '.$_);
+
             return;
         }
     }

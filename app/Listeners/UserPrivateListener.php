@@ -4,9 +4,6 @@ namespace App\Listeners;
 
 use App\Events\Debugger;
 use App\Events\JoinToChannel;
-use App\Models\MessageRoom;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class UserPrivateListener
 {

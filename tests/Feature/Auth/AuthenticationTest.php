@@ -3,7 +3,6 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
-use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

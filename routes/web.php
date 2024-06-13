@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    session()->put('test', 1);
     return view('main.welcome');
 });
 
@@ -38,7 +39,7 @@ Route::get('user/{id}', function (Request $request, int $id) {
         $user = User::findOrFail($id);
         echo '<pre>';
         print_r([
-            "id" => $user->id,
+            'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
         ]);
@@ -47,6 +48,10 @@ Route::get('user/{id}', function (Request $request, int $id) {
         report($e->getMessage());
         throw new ModelNotFoundException('User not found on ID: '.$id);
     }
+});
+
+Route::get('/__', function () {
+    throw new InvalidArgumentException('Not implemented');
 });
 
 require __DIR__.'/auth.php';

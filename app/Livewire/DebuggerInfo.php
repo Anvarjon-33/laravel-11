@@ -9,6 +9,7 @@ use Livewire\Component;
 class DebuggerInfo extends Component
 {
     public string $message;
+
     public mixed $data;
 
     public function render(): View

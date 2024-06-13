@@ -9,3 +9,10 @@
         <livewire:user-presense></livewire:user-presense>
     </div>
 @endsection
+
+<script>
+    localStorage.setItem('any_key', 'Any_Value');
+    console.log(
+        localStorage.getItem('any_key')
+    )
+</script>

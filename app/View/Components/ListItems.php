@@ -2,7 +2,6 @@
 
 namespace App\View\Components;
 
-use App\Events\Debugger;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;

@@ -15,6 +15,7 @@ class UserPostController extends Controller
     {
         $id = Auth::id();
         TestingPrivate::dispatch((int) $id);
+
         return view('User.Post.index');
     }
 

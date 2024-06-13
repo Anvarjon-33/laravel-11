@@ -29,14 +29,14 @@ class AppServiceProvider extends ServiceProvider
                 $method_type = explode('\\', $attr->getName())[count(explode('\\', $attr->getName())) - 1];
                 $attr = $attr->newInstance();
                 call_user_func_array(
-                    array(
+                    [
                         Route::class,
-                        strtolower($method_type)
-                    ),
-                    array(
+                        strtolower($method_type),
+                    ],
+                    [
                         $attr->path,
                         [$method->class, $method->name],
-                    )
+                    ]
                 );
             }
         }

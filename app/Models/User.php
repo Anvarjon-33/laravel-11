@@ -17,7 +17,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, BroadcastsEvents, HasApiTokens;
+    use BroadcastsEvents, HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +28,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'id'
+        'id',
     ];
 
     /**
@@ -59,7 +59,6 @@ class User extends Authenticatable
         return $this->belongsToMany(UserRoom::class, 'user_joined_rooms', 'user_id', 'room_id');
     }
 
-
     public function rooms(): HasMany
     {
         return $this->hasMany(UserRoom::class);
@@ -67,6 +66,6 @@ class User extends Authenticatable
 
     public function CanJoinRoom(string $room_name): bool
     {
-        return $this->joined_rooms->map(fn($el) => $el->name)->contains($room_name);
+        return $this->joined_rooms->map(fn ($el) => $el->name)->contains($room_name);
     }
 }

@@ -2,17 +2,11 @@
 
 namespace App\Livewire;
 
-use App\Broadcasting\UserPresenceRoom;
-use App\Events\Debugger;
-use App\Events\UserChatRoom;
-use App\Events\UserSec;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -28,6 +22,7 @@ class UserPresense extends Component
     public string $message;
 
     public array $here_users = [];
+
     public Collection $users;
 
     public function mount(Request $request): void
@@ -75,5 +70,4 @@ class UserPresense extends Component
         Session::put('last_room', $room);
         $this->js('window.location.reload()');
     }
-
 }

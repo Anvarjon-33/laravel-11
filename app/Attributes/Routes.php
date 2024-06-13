@@ -6,6 +6,7 @@ namespace App\Attributes;
 class Routes
 {
     public string $path;
+
     public string $middleware = 'Example Middleware';
 
     public function __construct($path)

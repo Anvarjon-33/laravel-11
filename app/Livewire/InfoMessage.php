@@ -2,16 +2,13 @@
 
 namespace App\Livewire;
 
-use App\Events\Debugger;
 use App\Models\User;
 use App\Models\UserJoinedRooms;
 use App\Models\UserRoom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
 use Livewire\Attributes\Locked;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class InfoMessage extends Component
@@ -19,9 +16,9 @@ class InfoMessage extends Component
     #[Locked]
     public User $user;
 
-    public Collection|null $rooms = null;
+    public ?Collection $rooms = null;
 
-    public Collection|null $joined_rooms = null;
+    public ?Collection $joined_rooms = null;
 
     public function render(): \Illuminate\View\View
     {

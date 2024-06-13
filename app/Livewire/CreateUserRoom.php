@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -16,19 +15,19 @@ use Livewire\Component;
 class CreateUserRoom extends Component
 {
     #[Locked]
-    public User|null $user;
+    public ?User $user;
 
     #[Validate('required|between:3,10|unique:user_rooms,name')]
     public string $room = '';
 
-    public Collection|null $my_rooms = null;
+    public ?Collection $my_rooms = null;
 
     public function mount(Request $request): void
     {
         if (Auth::check()) {
             $this->user = $request->user();
             if (Auth::user()->rooms->count() > 0) {
-                $this->my_rooms = $this->user->rooms->map(fn($room) => $room->only(['name']))->flatten();
+                $this->my_rooms = $this->user->rooms->map(fn ($room) => $room->only(['name']))->flatten();
             }
         }
     }

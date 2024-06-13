@@ -18,8 +18,8 @@ class ImagesFactory extends Factory
     {
         return [
             'name' => fake()->name([
-                'gender' => 'male'
-            ])
+                'gender' => 'male',
+            ]),
         ];
     }
 }

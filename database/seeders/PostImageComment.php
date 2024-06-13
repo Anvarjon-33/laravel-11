@@ -5,13 +5,8 @@ namespace Database\Seeders;
 use App\Models\Comments;
 use App\Models\Images;
 use App\Models\Post;
-use App\Models\User;
-use Dotenv\Util\Str;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
-use Nette\Utils\Image;
-use function Termwind\render;
 
 class PostImageComment extends Seeder
 {

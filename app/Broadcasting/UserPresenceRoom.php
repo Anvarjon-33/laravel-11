@@ -2,11 +2,7 @@
 
 namespace App\Broadcasting;
 
-use App\Events\Debugger;
 use App\Models\User;
-use App\Models\UserRoom;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 
 class UserPresenceRoom
 {
@@ -27,7 +23,7 @@ class UserPresenceRoom
             return [
                 'id' => $user->id,
                 'name' => $user->name,
-                'owner' => true
+                'owner' => true,
             ];
         }
         if ($user->CanJoinRoom($room)) {

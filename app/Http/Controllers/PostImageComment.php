@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Comments;
 use App\Models\Images;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostImageComment extends Controller
 {
@@ -15,6 +14,7 @@ class PostImageComment extends Controller
         $posts = Post::all();
         $images = Images::all();
         $comments = Comments::all();
+
         return view('ViewPost', compact(['posts', 'images', 'comments']));
 
     }

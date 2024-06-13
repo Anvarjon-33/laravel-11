@@ -10,7 +10,8 @@ class UserJoinedRooms extends Model
     use HasFactory;
 
     protected $table = 'user_joined_rooms';
+
     public $fillable = [
-        'user_id', 'room_id'
+        'user_id', 'room_id',
     ];
 }

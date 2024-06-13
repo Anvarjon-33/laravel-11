@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    session()->put('test', 1);
     return view('main.welcome');
 });
 
 Route::get('/dashboard', function () {
+    \App\Events\ChangeSession::dispatch('some_string');
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -51,7 +51,8 @@ Route::get('user/{id}', function (Request $request, int $id) {
 });
 
 Route::get('/__', function () {
-    throw new InvalidArgumentException('Not implemented');
+//    throw new InvalidArgumentException('Not implemented');
+    return view('mic');
 });
 
 require __DIR__.'/auth.php';

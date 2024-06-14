@@ -50,9 +50,4 @@ Route::get('user/{id}', function (Request $request, int $id) {
     }
 });
 
-Route::get('/__', function () {
-//    throw new InvalidArgumentException('Not implemented');
-    return view('mic');
-});
-
 require __DIR__.'/auth.php';

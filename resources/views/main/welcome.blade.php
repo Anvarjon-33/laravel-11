@@ -1,5 +1,29 @@
 @extends('layouts.main')
 @section('html-content')
+
+    <div class="p-3 m-3 bg-red-100">
+        <div>
+    {{
+    __('auth.failed')
+}}
+            <hr>
+            {{
+__('first')
+}}
+            <hr>
+            {{
+    __('auth.greeting', ['name' => 'John Doe'])
+}}
+            <hr>
+            <div>
+                {{
+    trans_choice('auth.apple', 6)
+}}
+            </div>
+
+        </div>
+    </div>
+
     <div class='flex gap-3'>
         <livewire:create-user-room></livewire:create-user-room>
         <livewire:info-message></livewire:info-message>

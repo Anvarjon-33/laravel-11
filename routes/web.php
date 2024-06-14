@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/{locale}', function (string $locale) {
+    \Illuminate\Support\Facades\App::setLocale($locale);
     return view('main.welcome');
 });
 

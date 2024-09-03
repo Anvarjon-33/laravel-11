@@ -8,8 +8,16 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{locale}', function (string $locale) {
-    \Illuminate\Support\Facades\App::setLocale($locale);
+Route::get('/protected', function () {
+    return "Protected Route";
+})->middleware(["auth"]);
+
+Route::get('/', function (\Illuminate\Http\Request $request) {
+
+    var_dump(
+        $request->session()->get('username')
+    );
+
     return view('main.welcome');
 });
 

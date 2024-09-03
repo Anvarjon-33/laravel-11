@@ -17,5 +17,4 @@ return [
     'password' => '(uz) The provided password is incorrect.',
     'throttle' => '(uz) Too many login attempts. Please try again in :seconds seconds.',
     'greeting' => 'welcome :name',
-    'apple' => '{0} olma yo\'q|[*,5] :count ta Olma|[6,*] :count ko\'p Olmalar',
 ];

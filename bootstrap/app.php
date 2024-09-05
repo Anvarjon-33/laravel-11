@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->use([
+            App\Http\Middleware\Cors::class
+        ]);
         //        $middleware->validateCsrfTokens([
         //            'http://192.168.1.*',
         //        ]);

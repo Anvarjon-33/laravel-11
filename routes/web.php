@@ -13,11 +13,10 @@ Route::get('/protected', function () {
 })->middleware(["auth"]);
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
-
-    var_dump(
-        $request->session()->get('username')
-    );
-
+    $res = \Illuminate\Support\Facades\Redis::command("get", ["name"]);
+    echo "<pre> -- ";
+    var_dump($res);
+    echo " -- </pre>";
     return view('main.welcome');
 });
 

@@ -13,10 +13,8 @@ Route::get('/protected', function () {
 })->middleware(["auth"]);
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
-    $res = \Illuminate\Support\Facades\Redis::command("get", ["name"]);
-    echo "<pre> -- ";
-    var_dump($res);
-    echo " -- </pre>";
+    echo phpinfo();
+
     return view('main.welcome');
 });
 

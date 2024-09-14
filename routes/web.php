@@ -13,8 +13,6 @@ Route::get('/protected', function () {
 })->middleware(["auth"]);
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
-    echo phpinfo();
-
     return view('main.welcome');
 });
 

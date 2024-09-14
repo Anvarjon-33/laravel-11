@@ -2,32 +2,27 @@
 
 namespace App\Livewire;
 
-use App\Events\Debugger;
-use App\Models\UserSession;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use JetBrains\PhpStorm\NoReturn;
 use Livewire\Component;
 
 class IncrSess extends Component
 {
-    public function mount(Request $request){
-        if ($request->session()->get("incr") == null){
-            $request->session()->put("incr", 0);
-        }
+    public int $count = 5;
+
+    public function mount(Request $request)
+    {
     }
 
     public function render()
     {
         return view('livewire.incr-sess');
     }
-    public function increment_session():void{
-//        if(Auth::user()){
-//            if (session()->get('incr') == null){
-//                session()->regenerate()
-//            }
-//        }
 
-        $ac = request()->session()->get("incr");
-        request()->session()->put('incr', $ac +=1);
+    #[NoReturn]
+    public function increment(): void
+    {
+        dd("WTF");
+        $this->count++;
     }
 }

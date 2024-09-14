@@ -1,10 +1,10 @@
 <div>
-    <button class="btn btn-warning" wire:click="increment_session">increment  -- {{session()->get('incr')}}</button>
+    <button class="btn btn-warning" wire:click="increment">increment -- {{ $count }}</button>
 </div>
 
 
 <script>
-    addEventListener("user-session", ({detail}) => {
-        console.log(detail)
+    addEventListener("load", ({detail}) => {
+        console.log("detail")
     })
 </script>

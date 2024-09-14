@@ -10,19 +10,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite('resources/js/app.js')
+    @livewireStyles
 </head>
 <body class="bg-amber-100 min-h-[100vh]">
 <div class="bg-amber-50 mx-auto w-[80%] min-h-[100vh] p-2">
-
     <div class="phone-3 m-3">
         <livewire:debugger-info/>
     </div>
     @yield('html-content')
     @yield('users')
 </div>
+@livewireScripts
 </body>
 </html>
 
 
-@livewire('empty-component')
 {{--This is not contain any component, but loads Livewire ant Alpine scripts--}}

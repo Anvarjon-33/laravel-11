@@ -2260,7 +2260,7 @@ kleur@^3.0.3:
 
 laravel-echo@^1.16.1:
   version "1.16.1"
-  resolved "https://registry.npmjs.org/laravel-echo/-/laravel-echo-1.16.1.tgz"
+  resolved "https://registry.yarnpkg.com/laravel-echo/-/laravel-echo-1.16.1.tgz#880b922d1ff4ea1f2c091b804f9476a26cb11285"
   integrity sha512-++Ylb6M3ariC9Rk5WE5gZjj6wcEV5kvLF8b+geJ5/rRIfdoOA+eG6b9qJPrarMD9rY28Apx+l3eelIrCc2skVg==
 
 laravel-vite-plugin@^1.0:
@@ -2659,7 +2659,7 @@ pure-rand@^6.0.0:
 
 pusher-js@^8.4.0-rc2:
   version "8.4.0-rc2"
-  resolved "https://registry.npmjs.org/pusher-js/-/pusher-js-8.4.0-rc2.tgz"
+  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-8.4.0-rc2.tgz#44f33bfe5bc89f741d82601125d6095bde28261b"
   integrity sha512-d87GjOEEl9QgO5BWmViSqW0LOzPvybvX6WA9zLUstNdB57jVJuR27zHkRnrav2a3+zAMlHbP2Og8wug+rG8T+g==
   dependencies:
     tweetnacl "^1.0.3"
@@ -2863,8 +2863,14 @@ string-width@^5.0.1, string-width@^5.1.2:
     emoji-regex "^9.2.2"
     strip-ansi "^7.0.1"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
-  name strip-ansi-cjs
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz"
+  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
+  dependencies:
+    ansi-regex "^5.0.1"
+
+strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==

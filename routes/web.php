@@ -12,8 +12,10 @@ Route::get('/protected', function () {
     return "Protected Route";
 })->middleware(["auth"]);
 
-Route::get('/', function (\Illuminate\Http\Request $request) {
+Route::get('/', function (Request $request) {
+    $request->session()->flush();
     return view('main.welcome');
+
 });
 
 Route::get('/dashboard', function () {
@@ -25,9 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
-Route::resource('/users', UserPostController::class);
 Route::post('/users/store', [UserPostController::class, 'store']);
 
 Route::get('/post_view', [PostImageComment::class, 'index']);
@@ -37,6 +39,7 @@ Route::post('/comment_save', [PostImageComment::class, 'comment_save']);
 
 Route::get('some', fn() => 'SOME url');
 Route::get('some_1', fn() => 'SOME_1 url');
+
 
 Route::get('user/{id}', function (Request $request, int $id) {
     try {

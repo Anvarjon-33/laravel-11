@@ -22,7 +22,6 @@ class IncrSess extends Component
     #[NoReturn]
     public function increment(): void
     {
-        dd("WTF");
         $this->count++;
     }
 }

@@ -20,6 +20,7 @@ class DebuggerInfo extends Component
     #[On('echo:pub,Debugger')]
     public function _debugger($message): void
     {
+//        dd($message);
         $this->message = $message['message'];
     }
 }

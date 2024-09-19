@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\Debugger;
 use App\Http\Controllers\PostImageComment;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserPostController;
@@ -13,7 +14,7 @@ Route::get('/protected', function () {
 })->middleware(["auth"]);
 
 Route::get('/', function (Request $request) {
-    $request->session()->flush();
+    Debugger::dispatch("working broadcasting ...");
     return view('main.welcome');
 
 });

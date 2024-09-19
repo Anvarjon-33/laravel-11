@@ -29,4 +29,9 @@ class Debugger implements ShouldBroadcast
     {
         return new Channel('pub');
     }
+
+    public function broadcastAs(): string
+    {
+        return 'debugger';
+    }
 }
